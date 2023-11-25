@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 회원가입 폼</title>
+    <link rel="icon" href="./images/images2/favicon.png">
+    <link rel="stylesheet" href="./quiz07.css">
+</head>
+<style>
+    /* Google web font CDN*/
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+
+    * {
+        box-sizing: border-box;
+        /*전체에 박스사이징*/
+        outline: none;
+        /*focus 했을때 테두리 나오게 */
+    }
+
+    body {
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 14px;
+        background-color: #f5f6f7;
+        line-height: 1.5em;
+        color: #222;
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #222;
+    }
+
+    /*member sign in*/
+    .member {
+        width: 400px;
+        /* border: 1px solid #000; */
+        margin: auto;
+        /*중앙 정렬*/
+        padding: 0 20px;
+        margin-bottom: 20px;
+    }
+
+    .member .logo {
+        /*로고는 이미지라 인라인 블록이니까 마진 오토 안됨 블록요소만 됨 */
+        display: block;
+        margin: 50px auto;
+    }
+
+    .member .field {
+        margin: 5px 0;
+        /*상하로 좀 띄워주기*/
+    }
+
+    .member b {
+        /* border: 1px solid #000; */
+        display: block;
+        /*수직 정렬하기 */
+        margin-bottom: 5px;
+    }
+
+    /*input 중 radio 는 width 가 100%면 안되니까 */
+    .member input:not(input[type=radio]),
+    .member select {
+        border: 1px solid #dadada;
+        padding: 15px;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .member input[type=button],
+    .member input[type=submit] {
+        background-color: #d3cd5e;
+        color: #fff
+    }
+
+    .member input:focus,
+    .member select:focus {
+        border: 1px solid #b4ab00;
+    }
+
+    .field.birth div {
+        /*field 이면서 birth*/
+        display: flex;
+        gap: 10px;
+        /*간격 벌려줄때 공식처럼 사용핟나 */
+    }
+
+    /* .field.birth div > * {  gap 사용한거랑 같은 효과를 줌 
+    flex:1;
+} */
+
+    .field.tel-number div {
+        display: flex;
+    }
+
+    .field.tel-number div input:nth-child(1) {
+        flex: 2;
+    }
+
+    .field.tel-number div input:nth-child(2) {
+        flex: 1;
+    }
+
+    .field.gender div {
+        border: 1px solid #dadada;
+        padding: 15px 5px;
+        background-color: #fff;
+    }
+
+    .placehold-text {
+        display: block;
+        /*span 으로 감싸서 크기영역을 블록요소로 만들어ㅜ저야한다*/
+        position: relative;
+        /* border: 1px solid #000; */
+    }
+
+    .placehold-text:before {
+        content: "@pupping.com";
+        position: absolute;
+        /*before은 inline 요소이기 때문에 span으로 감싸줌 */
+        right: 20px;
+        top: 13px;
+        pointer-events: none;
+        /*자체가 가지고 있는 pointer event 를 없애준다 */
+    }
+
+    .userpw {
+        background: url(./images/images2/icon-01.png) no-repeat center right 15px;
+        background-size: 20px;
+        background-color: #fff;
+    }
+
+    .userpw-confirm {
+        background: url(./images/images2/icon-02.png) no-repeat center right 15px;
+        background-size: 20px;
+        background-color: #fff;
+    }
+
+    .member-footer {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 20px;
+    }
+
+    .member-footer div a:hover {
+        text-decoration: underline;
+        color: rgb(171, 180, 0)
+    }
+
+    .member-footer div a:after {
+        content: '|';
+        font-size: 10px;
+        color: #bbb;
+        margin-right: 5px;
+        margin-left: 7px;
+        /*살짝 내려가 있기 때문에 위로 올려주기 위해 transform 사용하기*/
+        display: inline-block;
+        transform: translateY(-1px);
+
+    }
+
+    .member-footer div a:last-child:after {
+        display: none;
+    }
+
+    @media (max-width:768px) {
+        .member {
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+
+    <div class="member">
+        <!-- 1. 로고 -->
+        <img class="logo" src="1~.jpg">
+
+        <!-- 2. 필드 -->
+        <div class="field">
+            <b>아이디</b>
+            <span class="placehold-text"><input type="text"></span>
+        </div>
+        <div class="field">
+            <b>비밀번호</b>
+            <input class="userpw" type="password">
+        </div>
+        <div class="field">
+            <b>비밀번호 재확인</b>
+            <input class="userpw-confirm" type="password">
+        </div>
+        <div class="field">
+            <b>이름</b>
+            <input type="text">
+        </div>
+
+        <!-- 3. 필드(생년월일) -->
+        <div class="field birth">
+            <b>생년월일</b>
+            <div>
+
+                <select>
+                    <option value="">년(4자)</option>
+                    <option value="">1940</option>
+                    <option value="">1941</option>
+                    <option value="">1942</option>
+                    <option value="">1943</option>
+                    <option value="">1944</option>
+                    <option value="">1945</option>
+                    <option value="">1946</option>
+                    <option value="">1947</option>
+                    <option value="">1948</option>
+                    <option value="">1949</option>
+                    <option value="">1950</option>
+                    <option value="">1951</option>
+                    <option value="">1952</option>
+                    <option value="">1953</option>
+                    <option value="">1954</option>
+                    <option value="">1955</option>
+                    <option value="">1956</option>
+                    <option value="">1957</option>
+                    <option value="">1958</option>
+                    <option value="">1959</option>
+                    <option value="">1960</option>
+                    <option value="">1961</option>
+                    <option value="">1962</option>
+                    <option value="">1963</option>
+                    <option value="">1964</option>
+                    <option value="">1965</option>
+                    <option value="">1966</option>
+                    <option value="">1967</option>
+                    <option value="">1968</option>
+                    <option value="">1969</option>
+                    <option value="">1970</option>
+                    <option value="">1971</option>
+                    <option value="">1972</option>
+                    <option value="">1973</option>
+                    <option value="">1974</option>
+                    <option value="">1975</option>
+                    <option value="">1976</option>
+                    <option value="">1977</option>
+                    <option value="">1978</option>
+                    <option value="">1979</option>
+                    <option value="">1980</option>
+                    <option value="">1981</option>
+                    <option value="">1982</option>
+                    <option value="">1983</option>
+                    <option value="">1984</option>
+                    <option value="">1985</option>
+                    <option value="">1986</option>
+                    <option value="">1987</option>
+                    <option value="">1988</option>
+                    <option value="">1989</option>
+                    <option value="">1990</option>
+                    <option value="">1991</option>
+                    <option value="">1992</option>
+                    <option value="">1993</option>
+                    <option value="">1994</option>
+                    <option value="">1995</option>
+                    <option value="">1996</option>
+                    <option value="">1997</option>
+                    <option value="">1998</option>
+                    <option value="">1999</option>
+                    <option value="">2000</option>
+                    <option value="">2001</option>
+                    <option value="">2002</option>
+                    <option value="">2003</option>
+                    <option value="">2004</option>
+                    <option value="">2005</option>
+                    <option value="">2006</option>
+                    <option value="">2007</option>
+                    <option value="">2008</option>
+                    <option value="">2009</option>
+                    <option value="">2010</option>
+
+
+
+                </select>
+                <select>
+                    <option value="">월</option>
+                    <option value="">1월</option>
+                    <option value="">2월</option>
+                    <option value="">3월</option>
+                    <option value="">4월</option>
+                    <option value="">5월</option>
+                    <option value="">6월</option>
+                    <option value="">7월</option>
+                    <option value="">8월</option>
+                    <option value="">9월</option>
+                    <option value="">10월</option>
+                    <option value="">11월</option>
+                    <option value="">12월</option>
+                </select>
+
+                <select>
+                    <option value="">일</option>
+                    <option value="">1일</option>
+                    <option value="">2일</option>
+                    <option value="">3일</option>
+                    <option value="">4일</option>
+                    <option value="">5일</option>
+                    <option value="">6일</option>
+                    <option value="">7일</option>
+                    <option value="">8일</option>
+                    <option value="">9일</option>
+                    <option value="">10일</option>
+                    <option value="">11일</option>
+                    <option value="">12일</option>
+                    <option value="">13일</option>
+                    <option value="">14일</option>
+                    <option value="">15일</option>
+                    <option value="">16일</option>
+                    <option value="">17일</option>
+                    <option value="">18일</option>
+                    <option value="">19일</option>
+                    <option value="">20일</option>
+                    <option value="">21일</option>
+                    <option value="">22일</option>
+                    <option value="">23일</option>
+                    <option value="">24일</option>
+                    <option value="">25일</option>
+                    <option value="">26일</option>
+                    <option value="">27일</option>
+                    <option value="">28일</option>
+                    <option value="">29일</option>
+                    <option value="">30일</option>
+                    <option value="">31일</option>
+
+                </select>
+            </div>
+        </div>
+
+        <!-- 4. 필드(성별) -->
+        <div class="field gender">
+            <b>성별</b>
+            <div>
+                <label><input type="radio" name="gender">남자</label>
+                <label><input type="radio" name="gender">여자</label>
+                <label><input type="radio" name="gender">선택안함</label>
+            </div>
+        </div>
+
+        <!-- 5. 이메일_전화번호 -->
+        <div class="field">
+            <b>본인 확인 이메일<small>(선택)</small></b>
+            <input type="email" placeholder="선택입력">
+        </div>
+
+        <div class="field tel-number">
+            <b>휴대전화</b>
+            <select>
+                <option value="">미국 +1</option>
+                <option value="">이집트 +20</option>
+                <option value="">남수단 +211</option>
+                <option value="">모르코 +212</option>
+                <option value="">알제리 +213</option>
+                <option value="">튀니지 +216</option>
+                <option value="">리비아 +218</option>
+                <option value="">감비아 +220</option>
+                <option value="">세네갈 +221</option>
+                <option value="">모리타니 +222</option>
+                <option value="">말리 +223</option>
+                <option value="">기니 +224</option>
+                <option value="">코트디부아르 +225</option>
+                <option value="">부르키나파소 +226</option>
+                <option value="">대한민국 +82</option>
+            </select>
+            <div>
+                <input type="tel" placeholder="전화번호 입력">
+                <input type="button" value="인증번호 받기">
+            </div>
+            <input type="number" placeholder="인증번호를 입력하세요">
+        </div>
+
+        <!-- 6. 가입하기 버튼 -->
+        <input type="submit" value="가입하기">
+
+        <!-- 7. 푸터 -->
+        <div class="member-footer">
+            <div>
+                <a href="#none">이용약관</a>
+                <a href="#none">개인정보처리방침</a>
+                <a href="#none">책임의 한계와 법적고지</a>
+                <a href="#none">회원정보 고객센터</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
